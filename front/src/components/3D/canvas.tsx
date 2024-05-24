@@ -8,8 +8,8 @@ const CameraController = () => {
   const { camera, mouse } = useThree();
 
   useFrame(() => {
-    camera.position.x += (mouse.x * 5 - camera.position.x) * 0.01;
-    camera.position.y += (-mouse.y * 5 - camera.position.y) * 0.01;
+    camera.position.x += (mouse.x * 3 - camera.position.x) * 0.01;
+    camera.position.y += (-mouse.y * 3 - camera.position.y) * 0.01;
     camera.lookAt(0, 0, 0);
   });
 
