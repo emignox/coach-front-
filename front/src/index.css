@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #e9e8df;
+  font-family: "Merriweather", serif;
+}
+.list-item {
+  position: relative;
+  cursor: pointer;
+}
+
+.list-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: #ef5e55;
+  transition: width 0.2s ease-in-out;
+}
+
+.list-item:hover::after {
+  width: 100%;
+}
