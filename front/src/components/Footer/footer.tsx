@@ -10,17 +10,17 @@ function Footer() {
         <div className="flex flex-col space-x-10 justify-center items-center md:flex-row gap-32 md:space-y-0">
           <FaGithub
             onClick={() => window.open("https://github.com/emignox")}
-            className="text-gray-100 text-9xl"
+            className="text-gray-100 text-9xl cursor-pointer"
           />
           <FaFacebookF
             onClick={() =>
               window.open("https://www.facebook.com/emanuele.polizzotto")
             }
-            className="text-gray-100 text-9xl"
+            className="text-gray-100 text-9xl cursor-pointer"
           />
           <FaInstagramSquare
             onClick={() => window.open("https://www.instagram.com/ema97_/")}
-            className="text-gray-100 text-9xl"
+            className="text-gray-100 text-9xl cursor-pointer"
           />
         </div>
         <p className="text-center text-gray-100 py-4">
