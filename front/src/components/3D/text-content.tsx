@@ -7,7 +7,7 @@ const TextContent = () => {
       <Text
         value="Polizzotto"
         position={[-2, 2, -2]}
-        color={"#000000"}
+        color={"#F3F4F6"}
         bevelSize={0.01}
         bevelThickness={0.01}
         rotation={[0, 0, 0]}
@@ -18,7 +18,7 @@ const TextContent = () => {
       <Text
         value="Emanuele"
         position={[-2, 1, -2]}
-        color={"#000000"}
+        color={"#F3F4F6"}
         bevelSize={0.01}
         bevelThickness={0.01}
         rotation={[0, 0, 0]}

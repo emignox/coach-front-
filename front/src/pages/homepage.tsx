@@ -1,10 +1,14 @@
-import Nav from "../components/navbar/navbar";
 import { MyCanvas } from "../components/3D/canvas";
+import Card from "../components/cardAnimation/cardAnimation";
+import Service from "../components/services/services";
+import Products from "../components/shop/products";
 function Home() {
   return (
     <>
-      <Nav />
       <MyCanvas />
+      <Card />
+      <Service />
+      <Products />
     </>
   );
 }

@@ -11,7 +11,7 @@ function Nav() {
   function handleClick() {
     setIsOpen(!isOpen);
   }
-  const imgStyle = "w-1/6 lg:w-1/12 2xl:w-1/12 cursor-pointer";
+  const imgStyle = "w-1/6 md:w-20 lg:w-20 2xl:w-20 cursor-pointer";
   const listSyle = "list-item";
   return (
     <>
@@ -32,13 +32,13 @@ function Nav() {
           />
           <button className="md:hidden" onClick={handleClick}>
             {isOpen ? (
-              <IoClose className=" text-5xl" />
+              <IoClose className=" text-gray-100 text-5xl" />
             ) : (
-              <IoMenu className=" text-5xl" />
+              <IoMenu className="   text-gray-100 text-5xl" />
             )}
           </button>
           {isOpen && (
-            <div className="absolute z-10 top-16 left-0    rounded-2xl w-full  bg-[#e9e8df] transition-transform transform translate-Y-0 overflow-auto">
+            <div className="absolute z-10 top-16 left-0 text-gray-100    rounded-2xl w-full  bg-[#111] transition-transform transform translate-Y-0 overflow-auto">
               <ul className="flex  flex-col items-center justify-center gap-y-5 p-10">
                 <li
                   className={`${listSyle} focus:text-red-500`}
@@ -73,7 +73,7 @@ function Nav() {
               </ul>
             </div>
           )}
-          <ul className="hidden md:flex  w-full justify-center  items-center md:gap-x-24">
+          <ul className="hidden md:flex text-gray-100  w-full justify-center  items-center md:gap-x-24">
             <li
               className={`${listSyle} focus:text-red-500`}
               onClick={() => navigate("/")}

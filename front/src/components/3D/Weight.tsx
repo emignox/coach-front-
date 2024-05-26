@@ -13,9 +13,16 @@ export const Model = React.memo((props: GroupProps) => {
         rotation={[0, 0, -Math.PI / 2]}
         scale={[0.15, 1.96, 0.15]}
       />
-      <mesh
+      {/* <mesh
         geometry={(nodes.Cilindro001 as Mesh).geometry}
         material={materials["Materiale.005"]}
+        position={[-1.16, 0, 0]}
+        rotation={[0, 0, -Math.PI / 2]}
+        scale={[0.8, 0.16, 0.8]}
+      /> */}
+      <mesh
+        geometry={(nodes.Cilindro003 as Mesh).geometry}
+        material={materials["Materiale.008"]}
         position={[-1.16, 0, 0]}
         rotation={[0, 0, -Math.PI / 2]}
         scale={[0.8, 0.16, 0.8]}

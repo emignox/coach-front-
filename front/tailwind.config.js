@@ -6,6 +6,9 @@ export default {
       colors: {
         "custom-red": "#EF5E55",
       },
+      backgroundImage: {
+        footer_background: "url('/footer.svg')",
+      },
     },
   },
   plugins: [],
