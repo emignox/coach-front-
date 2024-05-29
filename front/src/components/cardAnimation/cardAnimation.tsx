@@ -50,7 +50,7 @@ function CardList() {
           className="font-black text-center text-gray-100  "
         />
         <div
-          className="flex flex-col justify-center gap-12 md:gap-32 items-center  md:flex md:flex-row md:justify-center md:items-center  "
+          className="flex flex-col justify-center gap-12 md:gap-10 lg:gap-20 items-center  md:flex md:flex-row md:justify-center md:items-center  "
           onClick={() => navigate("/advice")}
         >
           {cardData.map((card, index) => (

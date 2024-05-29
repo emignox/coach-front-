@@ -12,6 +12,9 @@
   "dependencies": {
     "@react-three/drei": "^9.105.6",
     "@react-three/fiber": "^8.16.6",
+    "axios": "^1.7.2",
+    "dayjs": "^1.11.11",
+    "js-cookie": "^3.0.5",
     "lottie-web": "^5.12.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -19,6 +22,7 @@
     "three": "^0.164.1"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20.12.12",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",

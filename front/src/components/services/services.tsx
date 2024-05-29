@@ -36,7 +36,7 @@ function ServiceComponent({
 
   return (
     <div
-      className={`w-full flex flex-col md:flex md:flex-row ${reverse ? "md:flex-row-reverse  md:text-end " : ""} justify-center items-center md:gap-52`}
+      className={`w-full flex flex-col md:flex md:flex-row ${reverse ? "md:flex-row-reverse  md:text-end " : ""} justify-center items-center md:gap-12 lg:gap-20`}
     >
       <div className=" w-6/12 md:w-2/12 " ref={container}></div>
       <div className=" flex flex-col justify-center items-center w-3/5">

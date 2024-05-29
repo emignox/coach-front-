@@ -11,11 +11,12 @@ function Nav() {
   function handleClick() {
     setIsOpen(!isOpen);
   }
+
   const imgStyle = "w-1/6 md:w-20 lg:w-20 2xl:w-20 cursor-pointer";
   const listSyle = "list-item";
   return (
     <>
-      <section className=" p-1 flex lg:p-5 ">
+      <section className="flex p-1 lg:p-5">
         <img
           onClick={() => navigate("/")}
           className={`${imgStyle} hidden md:block `}
@@ -23,7 +24,7 @@ function Nav() {
           alt=""
         />
 
-        <div className="flex  justify-between w-full  items-center">
+        <div className="flex items-center justify-between w-full">
           <img
             onClick={() => navigate("/")}
             className={`${imgStyle} md:hidden `}
@@ -32,14 +33,14 @@ function Nav() {
           />
           <button className="md:hidden" onClick={handleClick}>
             {isOpen ? (
-              <IoClose className=" text-gray-100 text-5xl" />
+              <IoClose className="text-5xl text-gray-100 " />
             ) : (
-              <IoMenu className="   text-gray-100 text-5xl" />
+              <IoMenu className="text-5xl text-gray-100 " />
             )}
           </button>
           {isOpen && (
-            <div className="absolute z-10 top-16 left-0 text-gray-100    rounded-2xl w-full  bg-[#111] transition-transform transform translate-Y-0 overflow-auto">
-              <ul className="flex  flex-col items-center justify-center gap-y-5 p-10">
+            <div className="absolute z-10 top-16 left-0 text-gray-100    rounded-2xl w-full  bg-[#111] transition-transform transform translate-Y-0 overflow-auto ">
+              <ul className="flex flex-col items-center justify-center p-10 gap-y-5">
                 <li
                   className={`${listSyle} focus:text-red-500`}
                   onClick={() => navigate("/")}
@@ -54,7 +55,7 @@ function Nav() {
                 </li>
                 <li
                   className={`${listSyle}`}
-                  onClick={() => navigate("/session")}
+                  onClick={() => navigate("/booking")}
                 >
                   Book a Session
                 </li>
@@ -73,7 +74,7 @@ function Nav() {
               </ul>
             </div>
           )}
-          <ul className="hidden md:flex text-gray-100  w-full justify-center  items-center md:gap-x-24">
+          <ul className="items-center justify-center hidden w-full font-thin text-gray-100 md:flex md:gap-x-16">
             <li
               className={`${listSyle} focus:text-red-500`}
               onClick={() => navigate("/")}
@@ -83,7 +84,7 @@ function Nav() {
             <li className={`${listSyle}`} onClick={() => navigate("/about")}>
               About{" "}
             </li>
-            <li className={`${listSyle}`} onClick={() => navigate("/session")}>
+            <li className={`${listSyle}`} onClick={() => navigate("/booking")}>
               Book a Session
             </li>
             <li className={`${listSyle}`} onClick={() => navigate("/advice")}>

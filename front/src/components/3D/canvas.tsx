@@ -31,6 +31,10 @@ export const MyCanvas = () => {
                 enablePan={false}
                 rotateSpeed={0.1}
                 enableDamping={true}
+                minAzimuthAngle={-Math.PI / 4} // -180 degrees
+                maxAzimuthAngle={Math.PI / 4}
+                minPolarAngle={Math.PI / 2}
+                maxPolarAngle={Math.PI / 2}
               />
               {/* <ambientLight /> */}
               <ambientLight intensity={0.5} />
