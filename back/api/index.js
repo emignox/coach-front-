@@ -15,6 +15,10 @@ app.use(bodyParser.json());
 app.use(
   cors({
     origin: [test, domain],
+    credentials: true, // Abilita l'invio di credenziali
+    maxAge: 1800, // Imposta il tempo massimo di memorizzazione della risposta preflight in cache
+    allowedHeaders: "Content-Type", // Specifica gli header consentiti
+    methods: "PUT, POST, GET, DELETE", // Rimuovi "OPTIONS" dai metodi consentiti
   })
 );
 
