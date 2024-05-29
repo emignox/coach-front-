@@ -7,23 +7,23 @@ function Footer() {
       <div
         className={`flex flex-col h-screen  opacity-75 bg-footer_background gap-12 items-center justify-between lg:h-screen bg-contain lg:bg-cover bg-bottom bg-no-repeat md:bg-bottom md:pt-52 pt-96`}
       >
-        <div className="flex flex-col space-x-10 justify-center items-center md:flex-row gap-32 md:space-y-0">
+        <div className="flex flex-col items-center justify-center gap-32 space-x-10 md:flex-row md:space-y-0">
           <FaGithub
             onClick={() => window.open("https://github.com/emignox")}
-            className="text-gray-100 text-9xl cursor-pointer hover:scale-110 transform transition duration-300  "
+            className="text-gray-100 transition duration-300 transform cursor-pointer text-9xl hover:scale-110 "
           />
           <FaFacebookF
             onClick={() =>
               window.open("https://www.facebook.com/emanuele.polizzotto ")
             }
-            className="text-gray-100 text-9xl cursor-pointer hover:scale-110 transform transition duration-300"
+            className="text-gray-100 transition duration-300 transform cursor-pointer text-9xl hover:scale-110"
           />
           <FaInstagramSquare
             onClick={() => window.open("https://www.instagram.com/ema97_/")}
-            className="text-gray-100 text-9xl cursor-pointer hover:scale-110 transform transition duration-300"
+            className="text-gray-100 transition duration-300 transform cursor-pointer text-9xl hover:scale-110"
           />
         </div>
-        <p className="text-center text-gray-100 py-4">
+        <p className="py-4 text-center text-gray-100">
           © {date} Poli. All rights reserved.
         </p>
       </div>

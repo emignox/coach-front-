@@ -28,10 +28,13 @@ const Login: React.FC = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post<ErrorResponse>(
-        "http://localhost:5001/api/users/login",
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/login`,
         {
           username,
           email,
+        },
+        {
+          withCredentials: true,
         }
       );
       console.log(response.data.message); // Logga il messaggio di successo

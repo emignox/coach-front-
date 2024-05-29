@@ -34,7 +34,8 @@ const Calendar: React.FC = () => {
           ?.split("=")[1];
         if (userId) {
           const response = await axios.get<{ appointments: Appointment[] }>(
-            `http://localhost:5001/api/users/appointments/${userId}`
+            `${import.meta.env.VITE_BACKEND_URL}/api/users/appointments/${userId}`,
+            { withCredentials: true }
           );
           setAppointments(response.data.appointments);
         } else {
@@ -55,12 +56,16 @@ const Calendar: React.FC = () => {
         .find((row) => row.startsWith("userId="))
         ?.split("=")[1];
       if (userId) {
-        await axios.delete("http://localhost:5001/api/users/appointments", {
-          data: {
-            userId,
-            appointmentId,
-          },
-        });
+        await axios.delete(
+          `${import.meta.env.VITE_BACKEND_URL}/api/users/appointments`,
+          {
+            data: {
+              userId,
+              appointmentId,
+            },
+            withCredentials: true,
+          }
+        );
         setAppointments(
           appointments.filter((app) => app._id !== appointmentId)
         );
@@ -80,21 +85,27 @@ const Calendar: React.FC = () => {
           .find((row) => row.startsWith("userId="))
           ?.split("=")[1];
         if (userId) {
+          console.log("Selected day:", selectedDay.format("YYYY-MM-DD")); // Aggiunto log per verificare il valore di selectedDay
+          console.log("Selected time:", selectedTime); // Aggiunto log per verificare il valore di selectedTime
+
           const response = await axios.post(
-            "http://localhost:5001/api/users/appointments",
+            `${import.meta.env.VITE_BACKEND_URL}/api/users/appointments`,
             {
               userId,
-              year: selectedDay.year(),
-              month: selectedDay.month() + 1,
-              day: selectedDay.date(),
+              date: selectedDay.format("YYYY-MM-DD"), // Invia la data nel formato ISO standard
               time: selectedTime,
-            }
+            },
+            { withCredentials: true }
           );
 
           setAppointments([
             ...appointments,
             response.data.user.appointments.pop(),
           ]);
+
+          // Resetta selectedDay e selectedTime dopo l'invio
+          setSelectedDay(null);
+          setSelectedTime(null);
         } else {
           console.error("User ID not found in cookies");
         }
@@ -110,7 +121,7 @@ const Calendar: React.FC = () => {
         className="my-12 text-3xl font-bold text-center text-gray-100"
         title="Choose a date and time..."
       />
-      <div className="flex items-center justify-center mb-20 h-[90vh] font p-10">
+      <div className="flex items-center justify-center mb-20 h-[90vh] font p-10 z-10">
         <div className="w-full h-full text-white">
           <div className="flex items-center justify-between mb-4">
             <CustomButton
@@ -136,7 +147,7 @@ const Calendar: React.FC = () => {
               return (
                 <div
                   key={day.format("YYYY-MM-DD")}
-                  className={`h-20 md:h-52 font-thin p-4 ${
+                  className={`h-20 md:h-52 font-thin p-4  ${
                     day.isSame(selectedDay)
                       ? "bg-red-500"
                       : isDisabledDay
@@ -170,12 +181,12 @@ const Calendar: React.FC = () => {
             })}
           </div>
           {selectedDay && (
-            <div className="mt-4">
+            <div className="mt-4 ">
               <h3 className="text-lg text-center">
                 Select the hours for {selectedDay.format("dddd DD MMMM YYYY")}
               </h3>
-              <div className="flex justify-center mt-2">
-                <div className="flex flex-wrap gap-3 p-2 text-white rounded-2xl">
+              <div className="flex justify-center mt-2 ">
+                <div className="z-10 flex flex-wrap gap-3 p-2 text-white rounded-2xl ">
                   {timeSlots.map((slot) => {
                     const isSlotTaken = appointments.some(
                       (appointment) =>
@@ -204,7 +215,7 @@ const Calendar: React.FC = () => {
                         key={slot}
                         className={`${
                           slot === selectedTime ? "bg-custom-red" : ""
-                        } px-4 py-2 border rounded-lg ${
+                        } px-4 py-2 border rounded-lg  ${
                           isDisabledSlot
                             ? "bg-gray-400 cursor-not-allowed"
                             : "hover:bg-custom-red"
@@ -220,7 +231,7 @@ const Calendar: React.FC = () => {
                   })}
                 </div>
               </div>
-              <div className="flex items-center justify-center my-5">
+              <div className="relative z-50 flex items-center justify-center my-5 ">
                 <CustomButton
                   className=""
                   value="Submit"

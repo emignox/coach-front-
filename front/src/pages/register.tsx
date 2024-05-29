@@ -25,10 +25,13 @@ const Register: React.FC = () => {
   const handleRegister = async () => {
     try {
       const response = await axios.post<ErrorResponse>(
-        "http://localhost:5001/api/users/register",
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/register`,
         {
           username,
           email,
+        },
+        {
+          withCredentials: true,
         }
       );
       console.log(response.data.message); // Logga il messaggio di successo
