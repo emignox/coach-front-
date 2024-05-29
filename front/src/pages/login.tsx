@@ -20,6 +20,8 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const maxLength = 20;
   const minLength = 3;
 
@@ -48,7 +50,8 @@ const Login: React.FC = () => {
       if (axiosError.response) {
         // L'errore è stato causato dalla risposta del server (status code diverso da 2xx)
         console.error("Server Error:", axiosError.response.data);
-        alert(`Server Error: ${axiosError.response.data.message}`);
+        // alert(` ${axiosError.response.data.message}`);
+        setErrorMessage(axiosError.response.data.message);
       } else if (axiosError.request) {
         // La richiesta è stata fatta ma non è stata ricevuta una risposta
         console.error("Network Error:", axiosError.request);
@@ -62,7 +65,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-[90vh]">
       <ConnectionContainer>
         <div className="flex items-center justify-center">
           <Titles title="Login" className="font-black" />
@@ -85,6 +88,7 @@ const Login: React.FC = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <CustomButton className="mb-5 " value="Login" onClick={handleLogin} />
+        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         <button
           className="underline text-custom-red"
           onClick={() => navigate("/register")}

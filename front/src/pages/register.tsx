@@ -16,6 +16,7 @@ const Register: React.FC = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const maxLength = 20;
@@ -37,6 +38,7 @@ const Register: React.FC = () => {
         // L'errore è stato causato dalla risposta del server (status code diverso da 2xx)
         console.error("Server Error:", axiosError.response.data);
         alert(`Server Error: ${axiosError.response.data.message}`);
+        setErrorMessage(axiosError.response.data.message);
       } else if (axiosError.request) {
         // La richiesta è stata fatta ma non è stata ricevuta una risposta
         console.error("Network Error:", axiosError.request);
@@ -58,7 +60,7 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-[90vh]">
       <ConnectionContainer>
         <div className="flex items-center justify-center">
           <Titles title="Register" className="font-black" />
@@ -95,6 +97,7 @@ const Register: React.FC = () => {
           value="Register"
           onClick={handleSubmit}
         />
+        {errorMessage && <p className="text-red-500 ">{errorMessage}</p>}
         <button
           className="underline text-custom-red"
           onClick={() => navigate("/login")}
