@@ -119,3 +119,19 @@ exports.getAppointments = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 };
+
+exports.getAllAppointments = async (req, res) => {
+  try {
+    const users = await User.find();
+    const appointments = users.map((user) => ({
+      user: {
+        username: user.username,
+        // Aggiungi qui altre proprietà dell'utente che vuoi includere
+      },
+      appointments: user.appointments,
+    }));
+    res.status(200).send({ appointments });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};

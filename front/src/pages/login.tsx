@@ -51,10 +51,18 @@ const Login: React.FC = () => {
     } catch (error) {
       const axiosError = error as AxiosError<ErrorResponse>;
       if (axiosError.response) {
-        // L'errore è stato causato dalla risposta del server (status code diverso da 2xx)
-        console.error("Server Error:", axiosError.response.data);
-        // alert(` ${axiosError.response.data.message}`);
-        setErrorMessage(axiosError.response.data.message);
+        const statusCode = axiosError.response.status;
+        if (statusCode >= 200 && statusCode < 300) {
+          // Request was successful
+        } else if (statusCode === 400) {
+          // L'utente non è autorizzato a visualizzare la pagina
+          console.error("Unauthorized Error:", axiosError.response.data);
+          alert(`Unauthorized Error: ${axiosError.response.data.message}`);
+        } else {
+          // L'errore è stato causato dalla risposta del server (status code diverso da 2xx)
+          console.error("Server Error:", axiosError.response.data);
+          setErrorMessage(axiosError.response.data.message);
+        }
       } else if (axiosError.request) {
         // La richiesta è stata fatta ma non è stata ricevuta una risposta
         console.error("Network Error:", axiosError.request);

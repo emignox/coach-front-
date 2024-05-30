@@ -7,5 +7,6 @@ router.post("/login", userController.login);
 router.post("/appointments", userController.addAppointment);
 router.delete("/appointments", userController.deleteAppointment);
 router.get("/appointments/:userId", userController.getAppointments);
+router.get("/appointments", userController.getAllAppointments);
 
 module.exports = router;

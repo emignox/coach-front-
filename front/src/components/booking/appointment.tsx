@@ -8,7 +8,9 @@ import {
   handleNext,
 } from "./logic-time";
 import Titles from "../blocs/titles";
-import axios from "axios";
+import deleteAppointment from "./deleteAppointment";
+import { submitAppointment } from "./submitAppointment";
+import { fetchAppointments } from "./fetchAppointments";
 
 interface Appointment {
   _id: string;
@@ -26,95 +28,22 @@ const Calendar: React.FC = () => {
   const daysOfCurrentView = getDaysOfCurrentView(currentDate);
 
   useEffect(() => {
-    const fetchAppointments = async () => {
-      try {
-        const userId = document.cookie
-          .split("; ")
-          .find((row) => row.startsWith("userId="))
-          ?.split("=")[1];
-        if (userId) {
-          const response = await axios.get<{ appointments: Appointment[] }>(
-            `${import.meta.env.VITE_BACKEND_URL}/api/users/appointments/${userId}`,
-            { withCredentials: true }
-          );
-          setAppointments(response.data.appointments);
-        } else {
-          console.error("User ID not found in cookies");
-        }
-      } catch (error) {
-        console.error("Error fetching appointments:", error);
-      }
-    };
-
-    fetchAppointments();
+    fetchAppointments(setAppointments);
   }, []);
-
   const handleDelete = async (appointmentId: string) => {
-    try {
-      const userId = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("userId="))
-        ?.split("=")[1];
-      if (userId) {
-        await axios.delete(
-          `${import.meta.env.VITE_BACKEND_URL}/api/users/appointments`,
-          {
-            data: {
-              userId,
-              appointmentId,
-            },
-            withCredentials: true,
-          }
-        );
-        setAppointments(
-          appointments.filter((app) => app._id !== appointmentId)
-        );
-      } else {
-        console.error("User ID not found in cookies");
-      }
-    } catch (error) {
-      console.error("Error deleting appointment:", error);
-    }
+    deleteAppointment(appointmentId, appointments, setAppointments);
   };
 
   const handleAppointmentSubmit = async () => {
     if (selectedDay && selectedTime) {
-      try {
-        const userId = document.cookie
-          .split("; ")
-          .find((row) => row.startsWith("userId="))
-          ?.split("=")[1];
-        if (userId) {
-          console.log("Selected day:", selectedDay.format("YYYY-MM-DD")); // Aggiunto log per verificare il valore di selectedDay
-          console.log("Selected time:", selectedTime); // Aggiunto log per verificare il valore di selectedTime
-
-          const response = await axios.post(
-            `${import.meta.env.VITE_BACKEND_URL}/api/users/appointments`,
-            {
-              userId,
-              date: selectedDay.format("YYYY-MM-DD"), // Invia la data nel formato ISO standard
-              time: selectedTime,
-            },
-            { withCredentials: true }
-          );
-
-          // Aggiorna lo stato degli appuntamenti
-          const newAppointment = {
-            _id: response.data.user.appointments.pop()._id,
-            date: selectedDay.format("YYYY-MM-DD"),
-            time: selectedTime,
-          };
-          setAppointments([...appointments, newAppointment]);
-
-          // Resetta selectedDay e selectedTime dopo l'invio
-          setSelectedDay(null);
-          setSelectedTime(null);
-        } else {
-          console.error("User ID not found in cookies");
-        }
-      } catch (error) {
-        console.error("Error adding appointment:", error);
-      }
+      submitAppointment(
+        selectedDay,
+        selectedTime,
+        appointments,
+        setAppointments,
+        setSelectedDay,
+        setSelectedTime
+      );
     }
   };
 
@@ -150,7 +79,7 @@ const Calendar: React.FC = () => {
               return (
                 <div
                   key={day.format("YYYY-MM-DD")}
-                  className={`h-20 md:h-52 font-thin p-4 ${
+                  className={`h-32 md:h-52 font-thin p-4 ${
                     day.isSame(selectedDay)
                       ? "bg-red-500"
                       : isDisabledDay
@@ -171,8 +100,10 @@ const Calendar: React.FC = () => {
                     .map((appointment) => (
                       <div
                         key={appointment._id}
-                        className="text-xs text-black "
+                        className="relative text-xs text-black bg-white rounded "
                       >
+                        {dayjs(appointment.date).format("YYYY-MM-DD")}
+                        <br />
                         {appointment.time}
                         <button
                           onClick={() => handleDelete(appointment._id)}
