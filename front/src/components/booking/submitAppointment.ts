@@ -1,6 +1,11 @@
 import axios from "axios";
 import dayjs from "dayjs";
 import { Appointment } from "./interface-appointments";
+import { AxiosError } from "axios";
+
+interface ErrorResponse {
+  message: string;
+}
 
 export const submitAppointment = async (
   selectedDay: dayjs.Dayjs,
@@ -46,6 +51,28 @@ export const submitAppointment = async (
       console.error("User ID not found in cookies");
     }
   } catch (error) {
-    console.error("Error adding appointment:", error);
+    const axiosError = error as AxiosError<ErrorResponse>;
+    if (axiosError.response) {
+      const statusCode = axiosError.response.status;
+      if (statusCode >= 200 && statusCode < 300) {
+        // Request was successful
+      } else if (statusCode === 400) {
+        // L'utente non è autorizzato a visualizzare la pagina
+        console.error("Unauthorized Error:", axiosError.response.data);
+        alert(`Unauthorized Error: ${axiosError.response.data.message}`);
+      } else {
+        // L'errore è stato causato dalla risposta del server (status code diverso da 2xx)
+        console.error("Server Error:", axiosError.response.data);
+        alert(`Server Error: ${axiosError.response.data.message}`);
+      }
+    } else if (axiosError.request) {
+      // La richiesta è stata fatta ma non è stata ricevuta una risposta
+      console.error("Network Error:", axiosError.request);
+      alert("Network Error: No response received from server.");
+    } else {
+      // Errore durante la configurazione della richiesta
+      console.error("Request Error:", axiosError.message);
+      alert(`Request Error: ${axiosError.message}`);
+    }
   }
 };
