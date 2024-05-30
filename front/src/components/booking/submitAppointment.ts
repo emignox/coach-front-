@@ -23,7 +23,9 @@ export const submitAppointment = async (
         `${import.meta.env.VITE_BACKEND_URL}/api/users/appointments`,
         {
           userId,
-          date: selectedDay.format("YYYY-MM-DD"), // Invia la data nel formato ISO standard
+          year: selectedDay.year(), // Invia l'anno
+          month: selectedDay.month() + 1, // Invia il mese (dayjs inizia a contare i mesi da 0)
+          day: selectedDay.date(), // Invia il giorno del mese
           time: selectedTime,
         },
         { withCredentials: true }
