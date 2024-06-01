@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import dayjs from "dayjs";
 import { CustomButton } from "../blocs/Custom-button";
 import {
@@ -8,9 +8,8 @@ import {
   handleNext,
 } from "./logic-time";
 import Titles from "../blocs/titles";
-import deleteAppointment from "./deleteAppointment";
 import { submitAppointment } from "./submitAppointment";
-import { fetchAppointments } from "./fetchAppointments";
+import Appointment_Id from "./appointmentById";
 
 interface Appointment {
   _id: string;
@@ -26,13 +25,6 @@ const Calendar: React.FC = () => {
 
   const timeSlots = getTimeSlots();
   const daysOfCurrentView = getDaysOfCurrentView(currentDate);
-
-  useEffect(() => {
-    fetchAppointments(setAppointments);
-  }, []);
-  const handleDelete = async (appointmentId: string) => {
-    deleteAppointment(appointmentId, appointments, setAppointments);
-  };
 
   const handleAppointmentSubmit = async () => {
     if (selectedDay && selectedTime) {
@@ -53,6 +45,7 @@ const Calendar: React.FC = () => {
         className="my-12 text-3xl font-bold text-center text-gray-100"
         title="Choose a date and time..."
       />
+      <Appointment_Id />
       <div className="flex items-center justify-center mb-20 h-[90vh] font p-10 relative z-10">
         <div className="w-full h-full text-white">
           <div className="flex items-center justify-between mb-4">
@@ -93,26 +86,6 @@ const Calendar: React.FC = () => {
                 >
                   <span>{day.format("dddd")}</span>
                   <span>{day.format("DD")}</span>
-                  {appointments
-                    .filter((appointment) =>
-                      dayjs(appointment.date).isSame(day, "day")
-                    )
-                    .map((appointment) => (
-                      <div
-                        key={appointment._id}
-                        className="relative text-xs text-black bg-white rounded "
-                      >
-                        {dayjs(appointment.date).format("YYYY-MM-DD")}
-                        <br />
-                        {appointment.time}
-                        <button
-                          onClick={() => handleDelete(appointment._id)}
-                          className="px-1 ml-2 text-red-500 bg-black rounded"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    ))}
                 </div>
               );
             })}

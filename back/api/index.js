@@ -1,8 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const userRoutes = require("../routes/user.routes");
 require("../config/connection"); // Importa la connessione al database
 const cors = require("cors");
+const userRoutes = require("../routes/user.routes");
 
 const app = express();
 const domain = process.env.DOMAIN;

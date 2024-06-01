@@ -47,15 +47,24 @@ function CoachCalendar() {
       {users.map(
         (user) =>
           user.appointments.length > 0 &&
-          user.appointments.map((appointment) => (
-            <div className="mx-10 text-white" key={appointment._id}>
-              <p>Username: {user.username}</p>
-              <p>Year: {appointment.year}</p>
-              <p>Month: {appointment.month}</p>
-              <p>Day: {appointment.day}</p>
-              <p>Time: {appointment.time}</p>
-            </div>
-          ))
+          user.appointments
+            .filter((appointment) => {
+              const appointmentDate = new Date(
+                appointment.year,
+                appointment.month - 1,
+                appointment.day
+              );
+              return appointmentDate >= new Date();
+            })
+            .map((appointment) => (
+              <div className="mx-10 text-white" key={appointment._id}>
+                <p>Username: {user.username}</p>
+                <p>Year: {appointment.year}</p>
+                <p>Month: {appointment.month}</p>
+                <p>Day: {appointment.day}</p>
+                <p>Time: {appointment.time}</p>
+              </div>
+            ))
       )}
     </div>
   );
