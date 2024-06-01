@@ -78,10 +78,10 @@ function Appointment_Id() {
               >
                 <div className="px-3 py-2 rounded-lg">
                   <p>
-                    Data:{" "}
+                    Date:{" "}
                     {`${appointment.day}/${appointment.month}/${appointment.year}`}
                   </p>
-                  <p>Ora: {appointment.time}</p>
+                  <p>Hour: {appointment.time}</p>
                 </div>
                 <button
                   className="px-3 py-2 text-xs font-bold text-red-500 cursor-pointer bg-gray-950"

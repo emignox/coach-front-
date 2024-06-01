@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import { CustomButton } from "../blocs/Custom-button";
 import {
@@ -18,9 +18,14 @@ const Calendar: React.FC = () => {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [appointments, setAppointments] = useState<Appointments[]>([]);
 
-  const timeSlots = getTimeSlots(appointments);
+  const timeSlots = getTimeSlots();
 
   const daysOfCurrentView = getDaysOfCurrentView(currentDate);
+
+  useEffect(() => {
+    // Simula il fetch degli appuntamenti
+    // fetchAppointments().then(data => setAppointments(data));
+  }, []);
 
   const handleAppointmentSubmit = async () => {
     if (selectedDay && selectedTime) {
@@ -93,6 +98,12 @@ const Calendar: React.FC = () => {
               <div className="flex justify-center mt-2">
                 <div className="relative z-10 flex flex-wrap gap-3 p-2 text-white rounded-2xl">
                   {timeSlots.map((slot) => {
+                    const isSlotTaken = appointments.some(
+                      (appointment) =>
+                        dayjs(appointment.day).isSame(selectedDay, "day") &&
+                        appointment.time === slot
+                    );
+
                     const isPastTime =
                       selectedDay.isSame(dayjs(), "day") &&
                       dayjs().isAfter(
@@ -106,7 +117,8 @@ const Calendar: React.FC = () => {
                       slot >= "16:00" &&
                       slot <= "22:00";
 
-                    const isDisabledSlot = isPastTime || isSaturdayEvening;
+                    const isDisabledSlot =
+                      isSlotTaken || isPastTime || isSaturdayEvening;
 
                     return (
                       <button
