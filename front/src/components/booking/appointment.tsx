@@ -10,20 +10,16 @@ import {
 import Titles from "../blocs/titles";
 import { submitAppointment } from "./submitAppointment";
 import Appointment_Id from "./appointmentById";
-
-interface Appointment {
-  _id: string;
-  date: string;
-  time: string;
-}
+import { Appointments } from "./interface-appointments";
 
 const Calendar: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(dayjs());
   const [selectedDay, setSelectedDay] = useState<dayjs.Dayjs | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [appointments, setAppointments] = useState<Appointments[]>([]);
 
-  const timeSlots = getTimeSlots();
+  const timeSlots = getTimeSlots(appointments);
+
   const daysOfCurrentView = getDaysOfCurrentView(currentDate);
 
   const handleAppointmentSubmit = async () => {
@@ -32,9 +28,7 @@ const Calendar: React.FC = () => {
         selectedDay,
         selectedTime,
         appointments,
-        setAppointments,
-        setSelectedDay,
-        setSelectedTime
+        setAppointments
       );
     }
   };
@@ -99,12 +93,6 @@ const Calendar: React.FC = () => {
               <div className="flex justify-center mt-2">
                 <div className="relative z-10 flex flex-wrap gap-3 p-2 text-white rounded-2xl">
                   {timeSlots.map((slot) => {
-                    const isSlotTaken = appointments.some(
-                      (appointment) =>
-                        dayjs(appointment.date).isSame(selectedDay, "day") &&
-                        appointment.time === slot
-                    );
-
                     const isPastTime =
                       selectedDay.isSame(dayjs(), "day") &&
                       dayjs().isAfter(
@@ -118,8 +106,7 @@ const Calendar: React.FC = () => {
                       slot >= "16:00" &&
                       slot <= "22:00";
 
-                    const isDisabledSlot =
-                      isSlotTaken || isPastTime || isSaturdayEvening;
+                    const isDisabledSlot = isPastTime || isSaturdayEvening;
 
                     return (
                       <button

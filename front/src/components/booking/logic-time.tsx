@@ -4,6 +4,7 @@ import "dayjs/locale/it";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import weekday from "dayjs/plugin/weekday";
 import updateLocale from "dayjs/plugin/updateLocale";
+import { Appointments } from "./interface-appointments";
 
 dayjs.extend(localizedFormat);
 dayjs.extend(weekday);
@@ -21,11 +22,19 @@ export const getDaysOfCurrentView = (currentDate: dayjs.Dayjs) => {
   return Array.from({ length: 7 }, (_, i) => startOfCurrentView.add(i, "day"));
 };
 
-export const getTimeSlots = () => {
-  return Array.from({ length: 16 }, (_, i) => {
+export const getTimeSlots = (appointments: Appointments[]) => {
+  const allTimeSlots = Array.from({ length: 16 }, (_, i) => {
     const hour = 7 + i;
     return `${hour}:00`;
   });
+
+  const takenTimeSlots = appointments.map((appointment) => appointment.time);
+
+  const availableTimeSlots = allTimeSlots.filter(
+    (slot) => !takenTimeSlots.includes(slot)
+  );
+
+  return availableTimeSlots;
 };
 
 export const handlePrev = (currentDate: dayjs.Dayjs) => {

@@ -24,13 +24,13 @@ function Appointment_Id() {
   const futureAppointments = appointments.filter((appointment) => {
     const appointmentDate = new Date(
       appointment.year,
-      appointment.month - 1,
+      appointment.month,
       appointment.day
     );
     const today = new Date();
     const todayWithoutTime = new Date(
       today.getFullYear(),
-      today.getMonth(),
+      today.getMonth(), // Non sottrarre 1 qui
       today.getDate()
     );
 
@@ -79,7 +79,7 @@ function Appointment_Id() {
                 <div className="px-3 py-2 rounded-lg">
                   <p>
                     Data:{" "}
-                    {`${appointment.day}/${appointment.month + 1}/${appointment.year}`}
+                    {`${appointment.day}/${appointment.month}/${appointment.year}`}
                   </p>
                   <p>Ora: {appointment.time}</p>
                 </div>

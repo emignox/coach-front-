@@ -1,6 +1,6 @@
 import axios from "axios";
 import dayjs from "dayjs";
-import { Appointment } from "./interface-appointments";
+import { Appointments } from "./interface-appointments";
 import { AxiosError } from "axios";
 
 interface ErrorResponse {
@@ -10,10 +10,8 @@ interface ErrorResponse {
 export const submitAppointment = async (
   selectedDay: dayjs.Dayjs,
   selectedTime: string,
-  appointments: Appointment[],
-  setAppointments: React.Dispatch<React.SetStateAction<Appointment[]>>,
-  setSelectedDay: React.Dispatch<React.SetStateAction<dayjs.Dayjs | null>>,
-  setSelectedTime: React.Dispatch<React.SetStateAction<string | null>>
+  appointments: Appointments[],
+  setAppointments: React.Dispatch<React.SetStateAction<Appointments[]>>
 ) => {
   try {
     const userId = document.cookie
@@ -37,16 +35,15 @@ export const submitAppointment = async (
       );
 
       // Aggiorna lo stato degli appuntamenti
-      const newAppointment = {
+      const newAppointment: Appointments = {
         _id: response.data.user.appointments.pop()._id,
-        date: selectedDay.format("YYYY-MM-DD"),
+        year: selectedDay.year(),
+        month: selectedDay.month() + 1,
+        day: selectedDay.date(),
         time: selectedTime,
+        createdAt: new Date().toISOString(),
       };
       setAppointments([...appointments, newAppointment]);
-
-      // Resetta selectedDay e selectedTime dopo l'invio
-      setSelectedDay(null);
-      setSelectedTime(null);
     } else {
       console.error("User ID not found in cookies");
     }
@@ -55,6 +52,7 @@ export const submitAppointment = async (
     if (axiosError.response) {
       const statusCode = axiosError.response.status;
       if (statusCode >= 200 && statusCode < 300) {
+        alert("Appointment successfully submitted!");
         // Request was successful
       } else if (statusCode === 400) {
         // L'utente non è autorizzato a visualizzare la pagina
