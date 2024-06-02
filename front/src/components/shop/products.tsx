@@ -2,6 +2,7 @@ import Titles from "../blocs/titles";
 import Section from "../blocs/sections";
 import { useState } from "react";
 import { CustomButton } from "../blocs/Custom-button";
+import P from "../blocs/paragraph";
 
 function Products() {
   const [hoveredImg, setHoveredImg] = useState<string | null>(null);
@@ -45,11 +46,13 @@ function Products() {
             }
           />
         </Section>
-        <p className="w-5/6 text-center text-gray-100 md:w-2/5">
-          Thanks to Teemill, an online platform, you can purchase T-shirts with
+        <P
+          className="w-5/6 text-2xl font-thin text-center text-gray-100 md:w-2/5"
+          text="   Thanks to Teemill, an online platform, you can purchase T-shirts with
           my logo printed in a minimal style. The shirts are made from 100%
-          natural and sustainable cotton.
-        </p>
+          natural and sustainable cotton."
+        />
+
         <CustomButton
           value="Buy now"
           className="text-center"

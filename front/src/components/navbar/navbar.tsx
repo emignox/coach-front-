@@ -22,7 +22,7 @@ function Nav() {
   const listSyle = "list-item";
   return (
     <>
-      <section className="flex p-1 lg:p-5">
+      <section className="flex p-1 lg:p-5 ">
         <img
           onClick={() => navigate("/")}
           className={`${imgStyle} hidden md:block `}
