@@ -7,7 +7,7 @@ function Footer() {
       <div
         className={`flex flex-col h-screen  opacity-75 bg-footer_background gap-12 items-center justify-between lg:h-screen bg-contain lg:bg-cover bg-bottom bg-no-repeat md:bg-bottom md:pt-52 mt-[900px] md:mt-0`}
       >
-        <div className="flex flex-col items-center justify-center gap-32 space-x-10 md:flex-row md:space-y-0">
+        <div className="flex flex-col items-center justify-center gap-32 md:flex-row md:space-y-0 md:gap-20">
           <FaGithub
             onClick={() => window.open("https://github.com/emignox")}
             className="text-gray-100 transition duration-300 transform cursor-pointer text-9xl hover:scale-110 "

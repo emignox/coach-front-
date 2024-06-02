@@ -11,3 +11,8 @@ export interface Appointments {
   time: string;
   createdAt: string;
 }
+
+export interface User {
+  username: string;
+  appointments: Appointments[];
+}

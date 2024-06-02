@@ -52,7 +52,7 @@ export const submitAppointment = async (
     if (axiosError.response) {
       const statusCode = axiosError.response.status;
       if (statusCode >= 200 && statusCode < 300) {
-        alert("Appointment successfully submitted!");
+        console.log("Appointment successfully submitted!");
         // Request was successful
       } else if (statusCode === 400) {
         // L'utente non è autorizzato a visualizzare la pagina

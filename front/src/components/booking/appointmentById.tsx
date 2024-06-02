@@ -71,47 +71,61 @@ function Appointment_Id() {
               X
             </button>
             <h2>Future Appointments</h2>
-            {futureAppointments.map((appointment: Appointments) => (
-              <div
-                className="flex items-center justify-between px-3 py-2 my-5 text-xs font-thin rounded-lg bg-gray-950"
-                key={appointment._id}
-              >
-                <div className="px-3 py-2 rounded-lg">
-                  <p>
-                    Date:{" "}
-                    {`${appointment.day}/${appointment.month}/${appointment.year}`}
-                  </p>
-                  <p>Hour: {appointment.time}</p>
-                </div>
-                <button
-                  className="px-3 py-2 text-xs font-bold text-red-500 cursor-pointer bg-gray-950"
-                  onClick={() => handleDelete(appointment._id)}
-                >
-                  Delete
-                </button>
-              </div>
-            ))}
+            {futureAppointments.length === 0 ? (
+              <div> 0</div>
+            ) : (
+              <>
+                {futureAppointments.map((appointment: Appointments) => (
+                  <div
+                    className="flex items-center justify-between px-3 py-2 my-5 text-xs font-thin rounded-lg bg-gray-950"
+                    key={appointment._id}
+                  >
+                    <div className="px-3 py-2 rounded-lg">
+                      <p>
+                        Date:
+                        {`${appointment.day}/${appointment.month}/${appointment.year}`}
+                      </p>
+                      <p>Hour: {appointment.time}</p>
+                    </div>
+                    <button
+                      className="px-3 py-2 text-xs font-bold text-red-500 cursor-pointer bg-gray-950"
+                      onClick={() => handleDelete(appointment._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
+              </>
+            )}
+
             <h2>Past Appointments</h2>
-            {pastAppointments.map((appointment: Appointments) => (
-              <div
-                className="flex items-center justify-between px-3 py-2 my-5 text-xs font-thin rounded-lg bg-gray-950"
-                key={appointment._id}
-              >
-                <div className="px-3 py-2 rounded-lg">
-                  <p>
-                    Data:{" "}
-                    {`${appointment.day}/${appointment.month + 1}/${appointment.year}`}
-                  </p>
-                  <p>Ora: {appointment.time}</p>
-                </div>
-                <button
-                  className="px-3 py-2 text-xs font-bold text-red-500 cursor-pointer bg-gray-950"
-                  onClick={() => handleDelete(appointment._id)}
-                >
-                  Delete
-                </button>
-              </div>
-            ))}
+            {pastAppointments.length === 0 ? (
+              <div>0</div>
+            ) : (
+              <>
+                {" "}
+                {pastAppointments.map((appointment: Appointments) => (
+                  <div
+                    className="flex items-center justify-between px-3 py-2 my-5 text-xs font-thin rounded-lg bg-gray-950"
+                    key={appointment._id}
+                  >
+                    <div className="px-3 py-2 rounded-lg">
+                      <p>
+                        Data:{" "}
+                        {`${appointment.day}/${appointment.month + 1}/${appointment.year}`}
+                      </p>
+                      <p>Ora: {appointment.time}</p>
+                    </div>
+                    <button
+                      className="px-3 py-2 text-xs font-bold text-red-500 cursor-pointer bg-gray-950"
+                      onClick={() => handleDelete(appointment._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
+              </>
+            )}
           </div>
         </div>
       )}
