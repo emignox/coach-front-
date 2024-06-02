@@ -21,21 +21,29 @@ function Appointment_Id() {
     dispatch(deleteExistingAppointment(appointmentId));
   };
 
-  const futureAppointments = appointments.filter((appointment) => {
-    const appointmentDate = new Date(
-      appointment.year,
-      appointment.month,
-      appointment.day
-    );
-    const today = new Date();
-    const todayWithoutTime = new Date(
-      today.getFullYear(),
-      today.getMonth(), // Non sottrarre 1 qui
-      today.getDate()
-    );
+  const futureAppointments = appointments
+    .filter((appointment) => {
+      const appointmentDate = new Date(
+        appointment.year,
+        appointment.month,
+        appointment.day
+      );
+      const today = new Date();
+      const todayWithoutTime = new Date(
+        today.getFullYear(),
+        today.getMonth(), // Non sottrarre 1 qui
+        today.getDate()
+      );
 
-    return appointmentDate >= todayWithoutTime;
-  });
+      return appointmentDate >= todayWithoutTime;
+    })
+    .sort((a, b) => {
+      const createdAtA = new Date(a.createdAt);
+      const createdAtB = new Date(b.createdAt);
+
+      // Ordina in ordine decrescente di data di creazione
+      return createdAtB.getTime() - createdAtA.getTime();
+    });
 
   const pastAppointments = appointments.filter((appointment) => {
     const appointmentDate = new Date(
