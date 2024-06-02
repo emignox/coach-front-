@@ -11,6 +11,12 @@ function Nav() {
   function handleClick() {
     setIsOpen(!isOpen);
   }
+  function handleNavigation(path: string) {
+    navigate(path);
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 300);
+  }
 
   const imgStyle = "w-1/6 md:w-20 lg:w-20 2xl:w-20 cursor-pointer";
   const listSyle = "list-item";
@@ -40,37 +46,45 @@ function Nav() {
           </button>
           {isOpen && (
             <div className="absolute z-10 top-16 left-0 text-gray-100    rounded-2xl w-full  bg-[#111] transition-transform transform translate-Y-0 overflow-auto ">
-              <ul className="flex flex-col items-center justify-center p-10 gap-y-5">
-                <li
-                  className={`${listSyle} focus:text-red-500`}
-                  onClick={() => navigate("/")}
-                >
-                  Home
-                </li>
-                <li
-                  className={`${listSyle}`}
-                  onClick={() => navigate("/about")}
-                >
-                  About{" "}
-                </li>
-                <li
-                  className={`${listSyle}`}
-                  onClick={() => navigate("/booking")}
-                >
-                  Book a Session
-                </li>
-                <li
-                  className={`${listSyle}`}
-                  onClick={() => navigate("/advice")}
-                >
-                  Advice
-                </li>
-                <li
-                  className={`${listSyle}`}
-                  onClick={() => navigate("/contacts")}
-                >
-                  Contacts
-                </li>
+              <ul className="flex ">
+                <div className="flex flex-col items-start justify-start p-10 gap-y-5">
+                  <li
+                    className={`${listSyle} focus:text-red-500`}
+                    onClick={() => handleNavigation("/")}
+                  >
+                    Home
+                  </li>
+                  <li
+                    className={`${listSyle}`}
+                    onClick={() => handleNavigation("/about")}
+                  >
+                    About{" "}
+                  </li>
+                  <li
+                    className={`${listSyle}`}
+                    onClick={() => handleNavigation("/booking")}
+                  >
+                    Book a Session
+                  </li>
+                </div>
+                <div className="flex flex-col items-start justify-start p-10 gap-y-5">
+                  <li
+                    className={`${listSyle}`}
+                    onClick={() => handleNavigation("/advice")}
+                  >
+                    Advice
+                  </li>
+                  <li
+                    className={`${listSyle}`}
+                    onClick={() => handleNavigation("/contacts")}
+                  >
+                    Contacts
+                  </li>
+                  <div
+                    onClick={() => handleNavigation("/coach-calendar")}
+                    className="w-2 h-2 bg-green-500 rounded cursor-pointer"
+                  ></div>
+                </div>
               </ul>
             </div>
           )}
@@ -93,6 +107,10 @@ function Nav() {
             <li className={`${listSyle}`} onClick={() => navigate("/contacts")}>
               Contacts
             </li>
+            <div
+              onClick={() => navigate("/coach-calendar")}
+              className="w-2 h-2 bg-green-500 rounded cursor-pointer"
+            ></div>
           </ul>
         </div>
       </section>

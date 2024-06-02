@@ -6,7 +6,7 @@ import Footer from "./components/Footer/footer";
 import Booking from "./pages/Booking";
 import Register from "./pages/register";
 import Login from "./pages/login";
-import ProtectedRoute from "./pages/protectRoute"; // Importa il componente ProtectedRoute
+import { ProtectedRoute, PasswordProtectedRoute } from "./pages/protectRoute"; // Importa il componente ProtectedRoute
 import SecretPage from "./components/booking/coach-calendar"; // Importa il componente della pagina segreta
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
           />
           <Route
             path="/coach-calendar"
-            element={<ProtectedRoute element={<SecretPage />} />}
+            element={<PasswordProtectedRoute element={<SecretPage />} />}
           />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
