@@ -98,7 +98,12 @@ const Login: React.FC = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <CustomButton className="mb-5 " value="Login" onClick={handleLogin} />
+        <CustomButton
+          type="submit"
+          className="mb-5 "
+          value="Login"
+          onClick={handleLogin}
+        />
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         <button
           className="underline text-custom-red"

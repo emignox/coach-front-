@@ -56,6 +56,7 @@ function Appointment_Id() {
   return (
     <div className="flex items-center justify-center w-full text-gray-100">
       <CustomButton
+        type="button"
         value="my appointments"
         className=""
         onClick={() => setPopupVisible(!isPopupVisible)}

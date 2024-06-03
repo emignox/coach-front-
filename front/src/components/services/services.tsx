@@ -44,7 +44,11 @@ function ServiceComponent({
         <Titles className="font-black" title={`${title}`}></Titles>
         <P className="" text={text} />
         {buttonText && (
-          <CustomButton value={buttonText} className="my-5 text-2xl" />
+          <CustomButton
+            type="button"
+            value={buttonText}
+            className="my-5 text-2xl"
+          />
         )}
       </div>
     </div>

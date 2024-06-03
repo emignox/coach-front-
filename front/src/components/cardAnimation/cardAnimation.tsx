@@ -58,6 +58,7 @@ function CardList() {
             <CardComponent key={index} {...card} />
           ))}
           <CustomButton
+            type="button"
             className=" md:hidden"
             onClick={() => navigate("/advice")}
             value="advice"

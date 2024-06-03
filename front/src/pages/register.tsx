@@ -96,6 +96,7 @@ const Register: React.FC = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <CustomButton
+          type="submit"
           className="mb-5 "
           value="Register"
           onClick={handleSubmit}

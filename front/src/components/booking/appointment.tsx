@@ -214,6 +214,7 @@ const Calendar: React.FC = () => {
         <div className="w-full h-full text-white">
           <div className="flex items-center justify-between mb-4">
             <CustomButton
+              type="button"
               value="Prev"
               onClick={() => setCurrentDate(handlePrev(currentDate))}
               className="p-2 bg-gray-100 text-[#111] rounded"
@@ -222,6 +223,7 @@ const Calendar: React.FC = () => {
               {currentDate.format("MMMM D, YYYY")}
             </h2>
             <CustomButton
+              type="button"
               value="Next"
               onClick={() => setCurrentDate(handleNext(currentDate))}
               className="p-2 bg-gray-100 text-[#111] rounded"
@@ -309,6 +311,7 @@ const Calendar: React.FC = () => {
               </div>
               <div className="flex items-center justify-center my-5">
                 <CustomButton
+                  type="button"
                   className="relative z-20"
                   value="Submit"
                   onClick={handleAppointmentSubmit}

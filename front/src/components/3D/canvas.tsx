@@ -20,7 +20,7 @@ const CameraController = () => {
 export const MyCanvas = () => {
   return (
     <>
-      <div className="md:flex md:flex-row  md:justify-between text-5xl  flex flex-col justify-center items-center lg:text-7xl my-32 lg:px-32 font-black gap-y-32">
+      <div className="flex flex-col items-center justify-center my-32 text-5xl font-black md:flex md:flex-row md:justify-between lg:text-7xl lg:px-32 gap-y-32">
         <div className="w-full h-[400px] md:w-1/2   ">
           <Suspense fallback={null}>
             <Canvas className="w-full md:w-1/2  rounded-2xl  bg-[#111] ">
@@ -47,11 +47,12 @@ export const MyCanvas = () => {
             </Canvas>
           </Suspense>
         </div>
-        <div className="flex flex-col  justify-start md:items-start text-gray-100 ">
-          <h1 className="  leading-relaxed">
+        <div className="flex flex-col justify-start text-gray-100 md:items-start ">
+          <h1 className="leading-relaxed ">
             Excellence. <br /> Energy. <br /> Results.
           </h1>
           <CustomButton
+            type="button"
             className=""
             onClick={() => console.log("Button clicked!")}
             value="Book Now"

@@ -54,6 +54,7 @@ function Products() {
         />
 
         <CustomButton
+          type="button"
           value="Buy now"
           className="text-center"
           onClick={() =>
