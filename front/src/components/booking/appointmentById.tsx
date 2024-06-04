@@ -15,7 +15,7 @@ function Appointment_Id() {
 
   useEffect(() => {
     dispatch(fetchAppointments());
-  }, [dispatch, appointments]);
+  }, [dispatch]);
 
   const handleDelete = (appointmentId: string) => {
     dispatch(deleteExistingAppointment(appointmentId));

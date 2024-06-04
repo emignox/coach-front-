@@ -33,8 +33,7 @@ export const submitAppointment = async (
         },
         { withCredentials: true }
       );
-
-      // Aggiorna lo stato degli appuntamenti
+      alert("Appointment successfully submitted!");
       const newAppointment: Appointments = {
         _id: response.data.user.appointments.pop()._id,
         year: selectedDay.year(),
@@ -52,7 +51,7 @@ export const submitAppointment = async (
     if (axiosError.response) {
       const statusCode = axiosError.response.status;
       if (statusCode >= 200 && statusCode < 300) {
-        console.log("Appointment successfully submitted!");
+        alert("Appointment successfully submitted!");
         // Request was successful
       } else if (statusCode === 400) {
         // L'utente non è autorizzato a visualizzare la pagina

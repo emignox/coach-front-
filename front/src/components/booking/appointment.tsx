@@ -153,8 +153,7 @@
 
 // export default Calendar;
 
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import dayjs from "dayjs";
 import { CustomButton } from "../blocs/Custom-button";
 import {
@@ -164,45 +163,30 @@ import {
   handleNext,
 } from "./logic-time";
 import Titles from "../blocs/titles";
-import { submitAppointment } from "./submitAppointment";
+import { submitAppointment } from "../../redux/actions/appointmentsActions";
 import Appointment_Id from "./appointmentById";
 import { Appointments } from "./interface-appointments";
-import { fetchAllAppointments } from "../../redux/actions/appointmentsActions";
+// import { fetchAllAppointments } from "../../redux/actions/appointmentsActions";
+import { useDispatch } from "react-redux";
 
 const Calendar: React.FC = () => {
   const dispatch = useDispatch();
   const [currentDate, setCurrentDate] = useState(dayjs());
   const [selectedDay, setSelectedDay] = useState<dayjs.Dayjs | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [appointments, setAppointments] = useState<Appointments[]>([]);
-
+  const [appointments] = useState<Appointments[]>([]);
   const timeSlots = getTimeSlots();
   const daysOfCurrentView = getDaysOfCurrentView(currentDate);
 
-  useEffect(() => {
-    const fetchAppointments = async () => {
-      try {
-        const response = await fetchAllAppointments()(dispatch);
-        setAppointments(response?.payload.appointments);
-      } catch (error) {
-        console.error("Error fetching appointments:", error);
-      }
-    };
-
-    fetchAppointments();
-  }, [dispatch]);
-
   const handleAppointmentSubmit = async () => {
     if (selectedDay && selectedTime) {
-      submitAppointment(
+      await submitAppointment(
         selectedDay,
         selectedTime,
-        appointments,
-        setAppointments
+        dispatch // Passa dispatch come argomento, non dispatch()
       );
     }
   };
-
   return (
     <>
       <Titles
