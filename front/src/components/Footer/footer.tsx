@@ -14,7 +14,7 @@ function Footer() {
   return (
     <>
       <div
-        className={`flex flex-col h-[300Px] md:h-screen  opacity-75 bg-footer_background gap-12 items-center ${margin} justify-center lg:h-screen bg-cover h-[300px] lg:bg-cover bg-bottom bg-no-repeat md:bg-contain md:bg-bottom md:pt-52  md:mt-0`}
+        className={`flex flex-col h-[300px] md:h-screen  opacity-75 bg-footer_background gap-12 items-center ${margin} justify-center lg:h-screen bg-cover h-[300px] lg:bg-cover bg-bottom bg-no-repeat md:bg-contain md:bg-bottom md:pt-52  md:mt-0`}
       >
         <div className="flex items-center justify-center gap-3 md:flex-row md:space-y-0 md:gap-20">
           <FaGithub

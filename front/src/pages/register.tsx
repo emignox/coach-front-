@@ -34,7 +34,7 @@ const Register: React.FC = () => {
           withCredentials: true,
         }
       );
-      console.log(response.data.message); // Logga il messaggio di successo
+      alert(response.data.message); // Logga il messaggio di successo
     } catch (error) {
       const axiosError = error as AxiosError<ErrorResponse>;
       if (axiosError.response) {
@@ -66,7 +66,7 @@ const Register: React.FC = () => {
     <div className="flex items-center justify-center h-[90vh]">
       <ConnectionContainer>
         <div className="flex items-center justify-center">
-          <Titles title="Register" className="font-black" />
+          <Titles title="Register" className="font-black text-black" />
           <GiPunch className="ml-3 text-xl text-[#111] md:text-3xl" />
         </div>{" "}
         <label htmlFor="username">Username:</label>

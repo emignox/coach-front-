@@ -32,14 +32,14 @@ function ContactForm() {
 
   return (
     <>
-      <div className="flex flex-col items-center w-screen h-screen space-y-5 md:items-start md:p-20 md:flex-row md:justify-center md:gap-52">
-        <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center w-screen h-screen space-y-5 2xl:px-20 md:items-start md:py-5 md:flex-row md:justify-center md:gap-0 lg:gap-20 lg:px-10">
+        <div className="flex flex-col items-center justify-center ">
           <Titles
-            title="Contat me "
-            className="w-full font-black text-center md:w-1/2 "
+            title="Contat me <br/> for any information"
+            className="w-full font-black text-center text-gray-100 md:w-ful lg:w-1/2 "
           />
           <img
-            className="w-full rounded-full h-1/2 md:w-4/5 md:h-4/5"
+            className="w-full rounded-full h-1/2 md:w-3/5 md:h-4/5"
             src="https://ideogram.ai/assets/image/balanced/response/mH4dJUEYTUCvfUvs234MxA"
             alt=""
           />
@@ -48,7 +48,7 @@ function ContactForm() {
         <form
           ref={form}
           onSubmit={sendEmail}
-          className="flex flex-col items-center justify-center w-4/5 py-32 space-y-4 text-black transition duration-500 transform border-4 md:w-1/2 rounded-2xl hover:border-custom-red"
+          className="flex flex-col items-center justify-center w-4/5 py-32 space-y-4 text-black transition duration-500 transform border-4 md:w-full rounded-2xl hover:border-custom-red 2xl:w-1/2"
         >
           <label
             htmlFor="from_name"
@@ -61,7 +61,7 @@ function ContactForm() {
             id="from_name"
             name="from_name"
             required
-            className="w-3/5 font-thin bg-transparent border-b border-gray-100 focus:outline-none"
+            className="w-3/5 font-thin text-gray-100 bg-transparent border-b border-gray-100 focus:outline-none"
           />
 
           <label
@@ -75,7 +75,7 @@ function ContactForm() {
             id="from_email"
             name="from_email"
             required
-            className="w-3/5 font-thin bg-transparent border-b border-gray-100 focus:outline-none"
+            className="w-3/5 font-thin text-gray-100 bg-transparent border-b border-gray-100 focus:outline-none"
           />
 
           <label htmlFor="message" className="text-lg font-thin text-gray-100">
