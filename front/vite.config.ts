@@ -9,4 +9,7 @@ export default defineConfig({
       "/api": "https://back-coach.vercel.app",
     },
   },
+  build: {
+    chunkSizeWarningLimit: 1000, // dimensione in KB
+  },
 });
