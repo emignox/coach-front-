@@ -20,11 +20,11 @@ function ContactForm() {
         .then(
           (result) => {
             console.log(result.text);
-            alert("Email inviata con successo!");
+            alert("Email sent successfully!");
           },
           (error) => {
             console.log(error.text);
-            alert("Errore nell'invio dell'email.");
+            alert("Error sending email.");
           }
         );
     }
@@ -32,64 +32,79 @@ function ContactForm() {
 
   return (
     <>
-      <div className="flex flex-col items-center w-screen h-screen space-y-5 2xl:px-20 md:items-start md:py-5 md:flex-row md:justify-center md:gap-0 lg:gap-20 lg:px-10">
-        <div className="flex flex-col items-center justify-center ">
-          <Titles
-            title="Contat me <br/> for any information"
-            className="w-full font-black text-center text-gray-100 md:w-ful lg:w-1/2 "
-          />
-          <img
-            className="w-full rounded-full h-1/2 md:w-3/5 md:h-4/5"
-            src="https://ideogram.ai/assets/image/balanced/response/mH4dJUEYTUCvfUvs234MxA"
-            alt=""
-          />
+      <div className="flex items-center justify-center min-h-screen p-5 ">
+        <div className="flex flex-col items-center w-full space-y-10 lg:flex-row lg:justify-between lg:space-y-0 lg:space-x-10">
+          <div className="flex flex-col items-center justify-center space-y-5 text-center lg:text-left">
+            <Titles
+              title="Contact me <br/> for any information"
+              className="text-4xl font-black text-gray-100"
+            />
+            <img
+              className="w-4/5 rounded-full shadow-lg lg:w-full lg:max-w-md"
+              src="https://ideogram.ai/assets/image/balanced/response/mH4dJUEYTUCvfUvs234MxA"
+              alt="Contact"
+            />
+          </div>
+
+          <form
+            ref={form}
+            onSubmit={sendEmail}
+            className="flex flex-col items-center w-full max-w-lg p-8 space-y-6 bg-white rounded-lg shadow-lg"
+          >
+            <div className="w-full">
+              <label
+                htmlFor="from_name"
+                className="block mb-2 text-lg font-thin text-gray-700"
+              >
+                Name:
+              </label>
+              <input
+                type="text"
+                id="from_name"
+                name="from_name"
+                required
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-custom-red"
+              />
+            </div>
+
+            <div className="w-full">
+              <label
+                htmlFor="from_email"
+                className="block mb-2 text-lg font-thin text-gray-700"
+              >
+                Email:
+              </label>
+              <input
+                type="email"
+                id="from_email"
+                name="from_email"
+                required
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-custom-red"
+              />
+            </div>
+
+            <div className="w-full">
+              <label
+                htmlFor="message"
+                className="block mb-2 text-lg font-thin text-gray-700"
+              >
+                Message:
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                className="w-full h-32 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-custom-red"
+              />
+            </div>
+
+            <CustomButton
+              value="Send"
+              type="submit"
+              className="px-6 py-3 shadow-md"
+            />
+          </form>
         </div>
-
-        <form
-          ref={form}
-          onSubmit={sendEmail}
-          className="flex flex-col items-center justify-center w-4/5 py-32 space-y-4 text-black transition duration-500 transform border-4 md:w-full rounded-2xl hover:border-custom-red 2xl:w-1/2"
-        >
-          <label
-            htmlFor="from_name"
-            className="text-lg font-thin text-gray-100"
-          >
-            Name:
-          </label>
-          <input
-            type="text"
-            id="from_name"
-            name="from_name"
-            required
-            className="w-3/5 font-thin text-gray-100 bg-transparent border-b border-gray-100 focus:outline-none"
-          />
-
-          <label
-            htmlFor="from_email"
-            className="text-lg font-thin text-gray-100"
-          >
-            Email:
-          </label>
-          <input
-            type="email"
-            id="from_email"
-            name="from_email"
-            required
-            className="w-3/5 font-thin text-gray-100 bg-transparent border-b border-gray-100 focus:outline-none"
-          />
-
-          <label htmlFor="message" className="text-lg font-thin text-gray-100">
-            Message:
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            required
-            className="w-3/5 p-2 text-gray-100 bg-transparent border border-gray-300 rounded focus:outline-none"
-          />
-
-          <CustomButton value="Invia" type="submit" className="p-2 " />
-        </form>
       </div>
     </>
   );

@@ -10,6 +10,7 @@ import { ProtectedRoute, PasswordProtectedRoute } from "./pages/protectRoute"; /
 import SecretPage from "./components/booking/coach-calendar"; // Importa il componente della pagina segreta
 import About from "./pages/about";
 import Contact from "./pages/contact";
+import Advice from "./pages/advice";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
           <Route path="/contacts" element={<Contact />} />
+          <Route path="/advice" element={<Advice />} />
         </Routes>
         <Footer />
       </Router>
