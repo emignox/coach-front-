@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { OrbitControls, Stage } from "@react-three/drei";
 import TextContent from "./text-content";
 import { CustomButton } from "../blocs/Custom-button";
+import { useNavigate } from "react-router-dom";
 
 const CameraController = () => {
   const { camera, mouse } = useThree();
@@ -18,6 +19,7 @@ const CameraController = () => {
 };
 
 export const MyCanvas = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="flex flex-col items-center justify-center my-32 text-5xl font-black md:flex md:flex-row md:justify-between lg:text-7xl lg:px-32 gap-y-32">
@@ -54,7 +56,7 @@ export const MyCanvas = () => {
           <CustomButton
             type="button"
             className=""
-            onClick={() => console.log("Button clicked!")}
+            onClick={() => navigate("/booking")}
             value="Book Now"
           />
         </div>

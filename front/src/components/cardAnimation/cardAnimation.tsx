@@ -52,7 +52,10 @@ function CardList() {
         />
         <div
           className="flex flex-col items-center justify-center gap-12 md:gap-10 lg:gap-20 md:flex md:flex-row md:justify-center md:items-center "
-          onClick={() => navigate("/advice")}
+          onClick={() => {
+            navigate("/advice");
+            window.scrollTo(0, 0);
+          }}
         >
           {cardData.map((card, index) => (
             <CardComponent key={index} {...card} />
@@ -60,7 +63,10 @@ function CardList() {
           <CustomButton
             type="button"
             className=" md:hidden"
-            onClick={() => navigate("/advice")}
+            onClick={() => {
+              navigate("/advice");
+              window.scrollTo(0, 0);
+            }}
             value="advice"
           />
         </div>

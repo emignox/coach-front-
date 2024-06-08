@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": "https://back-coach.vercel.app",
+      "/api": "https://coach-back.vercel.app",
     },
   },
   build: {

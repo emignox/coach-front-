@@ -33,15 +33,23 @@ function ContactForm() {
   return (
     <>
       <div className="flex items-center justify-center min-h-screen p-5 ">
-        <div className="flex flex-col items-center w-full space-y-10 lg:flex-row lg:justify-between lg:space-y-0 lg:space-x-10">
-          <div className="flex flex-col items-center justify-center space-y-5 text-center lg:text-left">
+        <div className="flex flex-col items-center w-full space-y-10 lg:flex-row lg:justify-around lg:space-y-0 lg:space-x-10">
+          <div
+            className="flex flex-col items-center justify-center p-20 space-y-5 text-center lg:text-center"
+            style={{
+              backgroundImage: "url('/gym.svg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
             <Titles
-              title="Contact me <br/> for any information"
+              title="Contact me "
               className="text-4xl font-black text-gray-100"
             />
             <img
-              className="w-4/5 rounded-full shadow-lg lg:w-full lg:max-w-md"
-              src="https://ideogram.ai/assets/image/balanced/response/mH4dJUEYTUCvfUvs234MxA"
+              className="w-4/5 shadow-lg lg:w-full lg:max-w-md"
+              src="/logo.svg"
               alt="Contact"
             />
           </div>

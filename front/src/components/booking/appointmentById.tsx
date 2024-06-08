@@ -46,10 +46,13 @@ function Appointment_Id() {
     });
 
   const pastAppointments = appointments.filter((appointment) => {
+    const [hours, minutes] = appointment.time.split(":").map(Number);
     const appointmentDate = new Date(
       appointment.year,
       appointment.month - 1,
-      appointment.day
+      appointment.day,
+      hours,
+      minutes
     );
     return appointmentDate < new Date();
   });
@@ -121,7 +124,7 @@ function Appointment_Id() {
                     <div className="px-3 py-2 rounded-lg">
                       <p>
                         Data:{" "}
-                        {`${appointment.day}/${appointment.month + 1}/${appointment.year}`}
+                        {`${appointment.day}/${appointment.month}/${appointment.year}`}
                       </p>
                       <p>Ora: {appointment.time}</p>
                     </div>
