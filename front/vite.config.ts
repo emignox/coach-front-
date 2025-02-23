@@ -1,15 +1,11 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// https://vitejs.dev/config/
 export default defineConfig({
+  base: "/coach-front-/",  // Sostituisci 'nome-repo' con il nome del tuo repository GitHub
   plugins: [react()],
-  server: {
-    proxy: {
-      "/api": "https://coach-back.vercel.app",
-    },
-  },
   build: {
-    chunkSizeWarningLimit: 2000, // dimensione in KB
+    outDir: "dist",
+    chunkSizeWarningLimit: 2000,
   },
 });
