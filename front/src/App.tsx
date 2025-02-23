@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/homepage";
 import Nav from "./components/navbar/navbar";
@@ -15,26 +15,24 @@ import Advice from "./pages/advice";
 function App() {
   return (
     <>
-      <Router>
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/booking"
-            element={<ProtectedRoute element={<Booking />} />}
-          />
-          <Route
-            path="/coach-calendar"
-            element={<PasswordProtectedRoute element={<SecretPage />} />}
-          />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contacts" element={<Contact />} />
-          <Route path="/advice" element={<Advice />} />
-        </Routes>
-        <Footer />
-      </Router>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/booking"
+          element={<ProtectedRoute element={<Booking />} />}
+        />
+        <Route
+          path="/coach-calendar"
+          element={<PasswordProtectedRoute element={<SecretPage />} />}
+        />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contacts" element={<Contact />} />
+        <Route path="/advice" element={<Advice />} />
+      </Routes>
+      <Footer />
     </>
   );
 }
